@@ -590,115 +590,1096 @@
       }
     }
 
-    /* Blue gradient separator */
+    /* Animated gradient separator */
     .section-separator {
-      width: 100%;
-      height: 80px;
-      background: linear-gradient(180deg,
-          transparent 0%,
-          rgba(0, 15, 153, 0.08) 15%,
-          rgba(0, 15, 153, 0.25) 30%,
-          rgba(0, 15, 153, 0.35) 50%,
-          rgba(0, 15, 153, 0.25) 70%,
-          rgba(0, 15, 153, 0.08) 85%,
-          transparent 100%);
-      margin: 60vh 0 40px 0;
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      height: 120px;
+      position: relative;
+      margin-top: 45vh;
+      margin-bottom: 80px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    /* Chat conversation styles */
-    .chat-section {
-      /* push the conversation well below the initial hero so the user must scroll to see it */
+    .section-separator::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: -100%;
+      right: -100%;
+      height: 2px;
+      transform: translateY(-50%);
+      background: linear-gradient(90deg,
+          transparent 0%,
+          transparent 5%,
+          rgba(0, 15, 153, 0.15) 10%,
+          rgba(0, 15, 153, 0.3) 15%,
+          rgba(0, 15, 153, 0.5) 20%,
+          rgba(0, 30, 180, 0.65) 25%,
+          rgba(0, 40, 200, 0.75) 30%,
+          rgba(0, 47, 220, 0.85) 35%,
+          rgba(0, 50, 230, 0.9) 40%,
+          rgba(0, 55, 240, 1) 45%,
+          rgba(0, 55, 240, 1) 50%,
+          rgba(0, 55, 240, 1) 55%,
+          rgba(0, 50, 230, 0.9) 60%,
+          rgba(0, 47, 220, 0.85) 65%,
+          rgba(0, 40, 200, 0.75) 70%,
+          rgba(0, 30, 180, 0.65) 75%,
+          rgba(0, 15, 153, 0.5) 80%,
+          rgba(0, 15, 153, 0.3) 85%,
+          rgba(0, 15, 153, 0.15) 90%,
+          transparent 95%,
+          transparent 100%);
+      background-size: 200% 100%;
+      animation: gradient-flow 12s linear infinite;
+      box-shadow:
+        0 0 15px rgba(0, 15, 153, 0.5),
+        0 0 30px rgba(0, 30, 180, 0.3),
+        0 0 45px rgba(0, 40, 200, 0.15);
+      filter: blur(0.5px);
+    }
+
+    .section-separator::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: -100%;
+      right: -100%;
+      height: 20px;
+      transform: translateY(-50%);
+      background: linear-gradient(90deg,
+          transparent 0%,
+          transparent 5%,
+          rgba(0, 15, 153, 0.08) 12%,
+          rgba(0, 15, 153, 0.12) 18%,
+          rgba(0, 20, 160, 0.16) 24%,
+          rgba(0, 25, 170, 0.2) 30%,
+          rgba(0, 30, 180, 0.24) 36%,
+          rgba(0, 35, 190, 0.28) 42%,
+          rgba(0, 40, 200, 0.3) 48%,
+          rgba(0, 40, 200, 0.3) 52%,
+          rgba(0, 35, 190, 0.28) 58%,
+          rgba(0, 30, 180, 0.24) 64%,
+          rgba(0, 25, 170, 0.2) 70%,
+          rgba(0, 20, 160, 0.16) 76%,
+          rgba(0, 15, 153, 0.12) 82%,
+          rgba(0, 15, 153, 0.08) 88%,
+          transparent 95%,
+          transparent 100%);
+      background-size: 200% 100%;
+      animation: gradient-flow 12s linear infinite reverse;
+      filter: blur(20px);
+      opacity: 0.9;
+    }
+
+    @keyframes gradient-flow {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      100% {
+        background-position: 200% 50%;
+      }
+    }
+
+    /* Q&A Section styles */
+    .qna-section {
       margin-top: 0;
       width: 100%;
       display: flex;
       justify-content: center;
       box-sizing: border-box;
-      padding-top: 50px;
+      padding: 50px 32px;
     }
 
-    .chat {
+    .qna-container {
       width: 100%;
-      max-width: 760px;
+      max-width: 1400px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .qna-left {
       display: flex;
       flex-direction: column;
-      gap: 14px;
-      align-items: stretch;
-      padding: 8px 4px;
+      gap: 48px;
     }
 
-    .message {
+    .qna-item {
       display: flex;
-      gap: 12px;
-      align-items: flex-end;
+      gap: 32px;
+      align-items: flex-start;
+      padding: 32px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.5);
+      box-shadow: 0 4px 16px rgba(0, 15, 153, 0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .message.other {
-      justify-content: flex-start;
+    .qna-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 15, 153, 0.15);
     }
 
-    .message.me {
-      justify-content: flex-end;
-      flex-direction: row-reverse;
-    }
-
-    .avatar-chat {
-      width: 44px;
-      height: 44px;
-      border-radius: 999px;
-      overflow: hidden;
-      display: inline-flex;
+    .qna-icon {
+      flex: 0 0 80px;
+      width: 80px;
+      height: 80px;
+      display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 800;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(0, 15, 153, 0.1), rgba(0, 15, 153, 0.2));
+    }
+
+    .qna-icon svg {
+      width: 48px;
+      height: 48px;
+      fill: var(--accent-a);
+    }
+
+    .qna-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .qna-question {
+      font-size: 2em;
+      font-weight: 700;
+      color: var(--accent-a);
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .qna-divider {
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-a), transparent);
+      border-radius: 2px;
+    }
+
+    .qna-answer {
+      font-size: 1.15em;
+      line-height: 1.6;
+      color: rgba(0, 0, 0, 0.8);
+      margin: 0;
+    }
+
+    /* Testimonial Carousel */
+    .testimonial-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .testimonial-title {
+      font-size: 2.5em;
+      font-weight: 700;
+      color: var(--accent-a);
+      margin: 0;
+      text-align: center;
+    }
+
+    .testimonial-carousel {
+      position: relative;
+      background: white;
+      border-radius: 24px;
+      padding: 48px 40px;
+      box-shadow: 0 12px 40px rgba(0, 15, 153, 0.15);
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 3px solid transparent;
+      background: linear-gradient(white, white) padding-box,
+        linear-gradient(135deg, var(--accent-a), #0066ff, var(--accent-a)) border-box;
+    }
+
+    .testimonial-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .testimonial-text {
+      font-size: 1.2em;
+      line-height: 1.7;
+      color: rgba(0, 0, 0, 0.85);
+      font-style: italic;
+      margin: 0;
+      position: relative;
+    }
+
+    .testimonial-text::before {
+      content: '"';
+      font-size: 4em;
+      color: var(--accent-a);
+      opacity: 0.2;
+      position: absolute;
+      top: -20px;
+      left: -10px;
+      font-family: Georgia, serif;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding-top: 24px;
+      border-top: 2px solid rgba(0, 15, 153, 0.1);
+    }
+
+    .testimonial-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-a), #0066ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: white;
-      flex: 0 0 44px;
-      background: #6b7280;
-      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto;
+      font-weight: 700;
+      font-size: 1.5em;
+      flex-shrink: 0;
     }
 
-    .avatar-chat.initial {
-      background: linear-gradient(90deg, #444, #666);
+    .testimonial-info {
+      flex: 1;
     }
 
-    .avatar-chat img {
+    .testimonial-name {
+      font-size: 1.2em;
+      font-weight: 700;
+      color: var(--accent-a);
+      margin: 0 0 4px 0;
+    }
+
+    .testimonial-role {
+      font-size: 0.95em;
+      color: rgba(0, 0, 0, 0.6);
+      margin: 0;
+    }
+
+    .testimonial-stars {
+      color: #FFD700;
+      font-size: 1.2em;
+      letter-spacing: 4px;
+    }
+
+    .carousel-controls {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .carousel-btn {
+      background: var(--accent-a);
+      color: white;
+      border: none;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2em;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 15, 153, 0.3);
+    }
+
+    .carousel-btn:hover {
+      background: #002f88;
+      transform: scale(1.1);
+      box-shadow: 0 6px 16px rgba(0, 15, 153, 0.4);
+    }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .carousel-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(0, 15, 153, 0.2);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .carousel-dot.active {
+      background: var(--accent-a);
+      width: 30px;
+      border-radius: 5px;
+    }
+
+    @media (max-width: 1024px) {
+      .qna-container {
+        grid-template-columns: 1fr;
+        gap: 60px;
+      }
+
+      .testimonial-wrapper {
+        position: relative;
+        top: 0;
+      }
+    }
+
+    @media (max-width:720px) {
+      .qna-section {
+        padding: 30px 16px;
+      }
+
+      .qna-left {
+        gap: 32px;
+      }
+
+      .qna-item {
+        flex-direction: column;
+        gap: 20px;
+        padding: 24px;
+      }
+
+      .qna-icon {
+        flex: 0 0 64px;
+        width: 64px;
+        height: 64px;
+      }
+
+      .qna-icon svg {
+        width: 36px;
+        height: 36px;
+      }
+
+      .qna-question {
+        font-size: 1.5em;
+      }
+
+      .qna-answer {
+        font-size: 1em;
+      }
+
+      .testimonial-title {
+        font-size: 1.8em;
+      }
+
+      .testimonial-carousel {
+        padding: 32px 24px;
+        min-height: 350px;
+      }
+
+      .testimonial-text {
+        font-size: 1.05em;
+      }
+    }
+
+    /* What I Offer Section */
+    .services-section {
+      width: 100%;
+      padding: 100px 32px;
+      background: linear-gradient(180deg, transparent 0%, rgba(0, 15, 153, 0.02) 100%);
+    }
+
+    .services-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .services-title {
+      text-align: center;
+      font-size: 5em;
+      font-weight: 900;
+      margin: 0 0 30px 0;
+      background: linear-gradient(135deg, #000f99 0%, #002f88 25%, #0055bb 50%, #002f88 75%, #000f99 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-transform: uppercase;
+      letter-spacing: 8px;
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      filter: drop-shadow(0 0 8px rgba(0, 15, 153, 0.15));
+      animation: title-shine 4s ease-in-out infinite;
+    }
+
+    @keyframes title-shine {
+
+      0%,
+      100% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+    }
+
+    .services-title::before {
+      content: '◆';
+      position: absolute;
+      left: 50%;
+      top: -40px;
+      transform: translateX(-50%);
+      font-size: 0.4em;
+      color: var(--accent-a);
+      opacity: 0.6;
+    }
+
+    .services-title::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 300px;
+      height: 5px;
+      background: linear-gradient(90deg, transparent, var(--accent-a) 20%, #0066cc 50%, var(--accent-a) 80%, transparent);
+      border-radius: 3px;
+      box-shadow: 0 0 10px rgba(0, 15, 153, 0.3);
+    }
+
+    .services-subtitle {
+      text-align: center;
+      font-size: 1.4em;
+      color: rgba(0, 0, 0, 0.6);
+      margin: 0 0 100px 0;
+      font-weight: 500;
+      font-style: italic;
+      letter-spacing: 1px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 32px;
+      margin-bottom: 40px;
+      margin-top: 80px;
+    }
+
+    .service-card {
+      position: relative;
+      background: white;
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 8px 32px rgba(0, 15, 153, 0.08);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--accent-a), #0066ff, #00aaff);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 48px rgba(0, 15, 153, 0.15);
+      border-color: rgba(0, 15, 153, 0.1);
+    }
+
+    .service-card:hover::before {
+      opacity: 1;
+    }
+
+    .service-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .service-emoji {
+      font-size: 2.5em;
+      line-height: 1;
+      filter: drop-shadow(0 4px 8px rgba(0, 15, 153, 0.2));
+    }
+
+    .service-category {
+      flex: 1;
+    }
+
+    .service-name {
+      font-size: 1.5em;
+      font-weight: 700;
+      color: var(--accent-a);
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .service-items {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .service-items li {
+      position: relative;
+      padding-left: 24px;
+      color: rgba(0, 0, 0, 0.75);
+      font-size: 1em;
+      line-height: 1.5;
+    }
+
+    .service-items li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: var(--accent-a);
+      font-weight: 700;
+    }
+
+    /* Scroll to offers button */
+    .scroll-to-offers {
+      opacity: 0;
+      visibility: hidden;
+      margin-top: 60px;
+      padding: 20px 40px;
+      background: var(--accent-a);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.3em;
+      font-weight: 700;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Courier New', monospace;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 24px rgba(0, 15, 153, 0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .scroll-to-offers.visible {
+      opacity: 1;
+      visibility: visible;
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    .scroll-to-offers:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(0, 15, 153, 0.4);
+      background: rgba(0, 15, 153, 0.9);
+    }
+
+    .scroll-to-offers svg {
+      width: 24px;
+      height: 24px;
+      fill: white;
+      transition: transform 0.3s ease;
+    }
+
+    .scroll-to-offers:hover svg {
+      transform: translateY(4px);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .scroll-to-offers {
+        margin-top: 40px;
+        padding: 16px 32px;
+        font-size: 1.1em;
+      }
+
+      .services-section {
+        padding: 60px 16px;
+      }
+
+      .services-title {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        letter-spacing: 3px;
+      }
+
+      .services-title::before {
+        top: -30px;
+        font-size: 0.3em;
+      }
+
+      .services-title::after {
+        width: 150px;
+        height: 3px;
+      }
+
+      .services-subtitle {
+        font-size: 1.1em;
+        margin-bottom: 48px;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .service-card {
+        padding: 24px;
+      }
+
+      .service-emoji {
+        font-size: 2em;
+      }
+
+      .service-name {
+        font-size: 1.3em;
+      }
+    }
+
+    /* Project Showcase Section */
+    .projects-section {
+      width: 100%;
+      padding: 120px 32px;
+      background: linear-gradient(180deg,
+          rgba(0, 15, 153, 0.02) 0%,
+          rgba(0, 15, 153, 0.05) 100%);
+      position: relative;
+    }
+
+    .projects-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .projects-header {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .projects-title {
+      font-size: 4.5em;
+      font-weight: 900;
+      margin: 0 0 20px 0;
+      background: linear-gradient(135deg, #000f99 0%, #002f88 25%, #0055bb 50%, #002f88 75%, #000f99 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-transform: uppercase;
+      letter-spacing: 6px;
+      filter: drop-shadow(0 0 8px rgba(0, 15, 153, 0.15));
+      animation: title-shine 4s ease-in-out infinite;
+    }
+
+    .projects-subtitle {
+      font-size: 1.3em;
+      color: rgba(0, 0, 0, 0.6);
+      margin: 0;
+      font-style: italic;
+    }
+
+    .projects-disclaimer {
+      max-width: 800px;
+      margin: 24px auto 0 auto;
+      padding: 20px 32px;
+      background: rgba(0, 15, 153, 0.05);
+      border-left: 4px solid var(--accent-a);
+      border-radius: 8px;
+      font-size: 1em;
+      line-height: 1.6;
+      color: rgba(0, 0, 0, 0.7);
+      font-style: italic;
+    }
+
+    .projects-disclaimer strong {
+      color: var(--accent-a);
+      font-weight: 600;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 40px;
+    }
+
+    .project-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0, 15, 153, 0.1);
+      transition: all 0.4s ease;
+      border: 2px solid transparent;
+      cursor: pointer;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 48px rgba(0, 15, 153, 0.2);
+      border-color: var(--accent-a);
+    }
+
+    .project-image {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      background: linear-gradient(135deg, rgba(0, 15, 153, 0.1), rgba(0, 15, 153, 0.05));
+      transition: transform 0.4s ease;
+    }
+
+    .project-card:hover .project-image {
+      transform: scale(1.05);
+    }
+
+    .project-content {
+      padding: 32px;
+    }
+
+    .project-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .project-icon {
+      font-size: 2em;
+      filter: drop-shadow(0 2px 4px rgba(0, 15, 153, 0.2));
+    }
+
+    .project-title {
+      font-size: 1.8em;
+      font-weight: 700;
+      color: var(--accent-a);
+      margin: 0;
+      flex: 1;
+    }
+
+    .project-description {
+      font-size: 1.1em;
+      line-height: 1.6;
+      color: rgba(0, 0, 0, 0.75);
+      margin: 0 0 24px 0;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .project-tag {
+      background: linear-gradient(135deg, rgba(0, 15, 153, 0.1), rgba(0, 15, 153, 0.15));
+      color: var(--accent-a);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.9em;
+      font-weight: 600;
+      border: 1px solid rgba(0, 15, 153, 0.2);
+    }
+
+    .project-stats {
+      display: flex;
+      gap: 24px;
+      padding-top: 20px;
+      border-top: 2px solid rgba(0, 15, 153, 0.1);
+    }
+
+    .project-stat {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(0, 0, 0, 0.6);
+      font-size: 0.95em;
+    }
+
+    .project-stat-icon {
+      font-size: 1.2em;
+    }
+
+    @media (max-width: 1024px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .projects-section {
+        padding: 80px 16px;
+      }
+
+      .projects-header {
+        margin-bottom: 48px;
+      }
+
+      .projects-title {
+        font-size: 2.5em;
+        letter-spacing: 3px;
+      }
+
+      .projects-subtitle {
+        font-size: 1.1em;
+      }
+
+      .projects-grid {
+        gap: 32px;
+      }
+
+      .project-content {
+        padding: 24px;
+      }
+
+      .project-title {
+        font-size: 1.5em;
+      }
+
+      .project-image {
+        height: 220px;
+      }
+    }
+
+    /* About Me Section */
+    .about-section {
+      width: 100%;
+      padding: 120px 32px;
+      background: linear-gradient(180deg,
+          rgba(0, 15, 153, 0.02) 0%,
+          rgba(0, 15, 153, 0.08) 50%,
+          rgba(0, 15, 153, 0.02) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg,
+          transparent 0%,
+          var(--accent-a) 20%,
+          #0066ff 50%,
+          var(--accent-a) 80%,
+          transparent 100%);
+      box-shadow: 0 0 20px rgba(0, 15, 153, 0.5);
+    }
+
+    .about-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-left {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .about-title {
+      font-size: 4.5em;
+      font-weight: 900;
+      margin: 0;
+      background: linear-gradient(135deg, #000f99 0%, #002f88 25%, #0055bb 50%, #002f88 75%, #000f99 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-transform: uppercase;
+      letter-spacing: 6px;
+      filter: drop-shadow(0 0 8px rgba(0, 15, 153, 0.15));
+      animation: title-shine 4s ease-in-out infinite;
+      line-height: 1.1;
+    }
+
+    .about-highlight {
+      font-size: 1.8em;
+      color: var(--accent-a);
+      font-weight: 700;
+      margin: 0;
+      font-style: italic;
+      line-height: 1.3;
+    }
+
+    .about-image-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 15, 153, 0.3);
+      background: linear-gradient(135deg, var(--accent-a), #0066ff);
+      padding: 6px;
+    }
+
+    .about-image-wrapper::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(45deg, var(--accent-a), #0066ff, #00aaff, var(--accent-a));
+      background-size: 300% 300%;
+      animation: gradient-rotate 8s ease infinite;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .about-image-wrapper:hover::before {
+      opacity: 1;
+    }
+
+    @keyframes gradient-rotate {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .about-image {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: block
+      border-radius: 20px;
+      position: relative;
+      z-index: 1;
+      background: #111;
     }
 
-    .bubble {
-      max-width: 72%;
-      padding: 12px 14px;
-      border-radius: 14px;
-      background: #f3f4f6;
-      color: #0b1220;
-      box-shadow: 0 8px 20px rgba(2, 6, 23, 0.06);
-      line-height: 1.3;
-      white-space: pre-wrap;
+    .about-right {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
     }
 
-    .message.me .bubble {
-      background: linear-gradient(90deg, #0077ff, #00a6ff);
-      color: #fff;
+    .about-bio {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
     }
 
-    @media (max-width:720px) {
-      .bubble {
-        max-width: 82%
+    .about-bio p {
+      font-size: 1.2em;
+      line-height: 1.8;
+      color: rgba(0, 0, 0, 0.85);
+      margin: 0;
+    }
+
+    .about-bio strong {
+      color: var(--accent-a);
+      font-weight: 700;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 16px;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 24px;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 4px 16px rgba(0, 15, 153, 0.1);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 15, 153, 0.2);
+      border-color: var(--accent-a);
+    }
+
+    .stat-icon {
+      font-size: 2.5em;
+      margin-bottom: 12px;
+      filter: drop-shadow(0 4px 8px rgba(0, 15, 153, 0.2));
+    }
+
+    .stat-label {
+      font-size: 0.95em;
+      color: rgba(0, 0, 0, 0.6);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin: 0;
+    }
+
+    @media (max-width: 1024px) {
+      .about-container {
+        grid-template-columns: 1fr;
+        gap: 48px;
       }
 
-      .avatar-chat {
-        width: 36px;
-        height: 36px;
-        flex: 0 0 36px
+      .about-left {
+        text-align: center;
+        align-items: center;
+      }
+
+      .about-image-wrapper {
+        max-width: 400px;
+        margin: 0 auto;
       }
     }
 
-    /* On small screens, push the conversation further so it remains off-screen until user scrolls */
-    @media (max-width:720px) {
-      .chat-section {
-        margin-top: 90vh;
+    @media (max-width: 720px) {
+      .about-section {
+        padding: 80px 16px;
+      }
+
+      .about-title {
+        font-size: 2.5em;
+        letter-spacing: 3px;
+      }
+
+      .about-highlight {
+        font-size: 1.3em;
+      }
+
+      .about-bio p {
+        font-size: 1.05em;
+      }
+
+      .about-stats {
+        grid-template-columns: 1fr;
+        gap: 16px;
       }
     }
   </style>
@@ -716,7 +1697,7 @@
       <nav aria-label="Primary">
         <ul class="nav-list">
           <li>
-            <a href="#home">
+            <a href="#home" onclick="scrollToTop(event)">
               <!-- Home icon -->
               <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                 <path d="M12 3l9 8h-3v7h-12v-7h-3l9-8z"></path>
@@ -725,16 +1706,18 @@
             </a>
           </li>
           <li>
-            <a href="#projects">
-              <!-- Folder / projects icon -->
+            <a href="#services" onclick="scrollToServices(event)">
+              <!-- Services icon -->
               <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <path d="M10 4l2 2h8v12h-20v-14h10z"></path>
+                <path
+                  d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 12 7.4l3.38 4.6L17 10.83 14.92 8H20v6z">
+                </path>
               </svg>
-              <span>Projects</span>
+              <span>What I Offer</span>
             </a>
           </li>
           <li>
-            <a href="#about">
+            <a href="#about" onclick="scrollToAbout(event)">
               <!-- User / about icon -->
               <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                 <path
@@ -775,23 +1758,473 @@
             data-text="I design and develop game systems"></span> <span class="angle">&gt;</span></div>
       </div>
 
+      <!-- Scroll to offers button -->
+      <button class="scroll-to-offers" id="scrollButton" onclick="scrollToServices()">
+        See What I Offer
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M7 10l5 5 5-5z"></path>
+        </svg>
+      </button>
+
       <!-- Blue gradient separator line -->
       <div class="section-separator"></div>
 
-      <!-- Chat conversation (two-person) -->
-      <section class="chat-section" aria-label="Conversation">
-        <div class="chat" role="log" aria-live="polite">
-          <div class="message other">
-            <div class="avatar-chat initial" aria-hidden="true">L</div>
-            <div class="bubble">I need a website for my company, PERIOD.
-              We specialize in marketing eco-friendly and gender-neutral feminine hygiene products.</div>
+      <!-- What I Offer Section -->
+      <section class="services-section" id="services" aria-label="What I Offer">
+        <div class="services-container">
+          <h2 class="services-title">What I Offer</h2>
+
+          <div class="services-grid">
+            <!-- Core Services -->
+            <div class="service-card">
+              <div class="service-header">
+                <span class="service-emoji">🎮</span>
+                <div class="service-category">
+                  <h3 class="service-name">Gameplay Programming</h3>
+                </div>
+              </div>
+              <ul class="service-items">
+                <li>Player controllers</li>
+                <li>Enemy AI & behavior systems</li>
+                <li>Interaction systems</li>
+                <li>Combat mechanics</li>
+                <li>Custom tools & editors</li>
+                <li>Ability systems, inventory, leveling, etc.</li>
+              </ul>
+            </div>
+
+            <div class="service-card">
+              <div class="service-header">
+                <span class="service-emoji">🧠</span>
+                <div class="service-category">
+                  <h3 class="service-name">AI & Systems Design</h3>
+                </div>
+              </div>
+              <ul class="service-items">
+                <li>State machines & behavior trees</li>
+                <li>Sight/hearing systems</li>
+                <li>Pathfinding & navigation</li>
+                <li>Enemy aggression logic</li>
+                <li>Companion AI</li>
+                <li>Procedural systems (loot, levels, spawns)</li>
+              </ul>
+            </div>
+
+            <div class="service-card">
+              <div class="service-header">
+                <span class="service-emoji">🛠</span>
+                <div class="service-category">
+                  <h3 class="service-name">Engine & Tool Development</h3>
+                </div>
+              </div>
+              <ul class="service-items">
+                <li>Unity, Unreal, Godot, custom engines</li>
+                <li>Custom editor tools</li>
+                <li>Level design workflows</li>
+                <li>Pipelines & automation</li>
+                <li>Optimization tools</li>
+                <li>Gameplay debugging tools</li>
+              </ul>
+            </div>
+
+            <div class="service-card">
+              <div class="service-header">
+                <span class="service-emoji">📦</span>
+                <div class="service-category">
+                  <h3 class="service-name">Full Feature/Prototype Development</h3>
+                </div>
+              </div>
+              <ul class="service-items">
+                <li>Build a feature from scratch (combat, dialogue, crafting, equipment, etc.)</li>
+                <li>Create a standalone prototype</li>
+                <li>Turn your idea into a playable demo</li>
+                <li>Polish existing projects/features</li>
+              </ul>
+            </div>
+
+            <!-- Art & Content Support -->
+            <div class="service-card">
+              <div class="service-header">
+                <span class="service-emoji">🎨</span>
+                <div class="service-category">
+                  <h3 class="service-name">Animation & VFX Integration</h3>
+                </div>
+              </div>
+              <ul class="service-items">
+                <li>Animation controllers / blend trees</li>
+                <li>VFX hookups (VFX Graph, Niagara, particle systems)</li>
+                <li>Character implementation (rig + behavior)</li>
+              </ul>
+            </div>
+
+            <div class="service-card">
+              <div class="service-header">
+                <span class="service-emoji">🔊</span>
+                <div class="service-category">
+                  <h3 class="service-name">Audio Integration</h3>
+                </div>
+              </div>
+              <ul class="service-items">
+                <li>Event-driven audio systems</li>
+                <li>Adaptive music</li>
+                <li>Sound effect implementation</li>
+                <li>Middleware like FMOD/Wwise</li>
+              </ul>
+            </div>
+
+            <!-- Technical Services -->
+            <div class="service-card">
+              <div class="service-header">
+                <span class="service-emoji">⚙️</span>
+                <div class="service-category">
+                  <h3 class="service-name">Optimization & Performance</h3>
+                </div>
+              </div>
+              <ul class="service-items">
+                <li>Memory optimization</li>
+                <li>GPU/CPU performance improvements</li>
+                <li>Scene & lighting optimization</li>
+                <li>Build size reduction</li>
+                <li>Console/mobile optimization</li>
+              </ul>
+            </div>
+
+            <div class="service-card">
+              <div class="service-header">
+                <span class="service-emoji">🐞</span>
+                <div class="service-category">
+                  <h3 class="service-name">Bug Fixing & Refactoring</h3>
+                </div>
+              </div>
+              <ul class="service-items">
+                <li>Fix gameplay bugs</li>
+                <li>Improve messy code</li>
+                <li>Stabilize unstable builds</li>
+                <li>Improve performance & structure</li>
+              </ul>
+            </div>
+
+            <!-- Production & Support -->
+            <div class="service-card">
+              <div class="service-header">
+                <span class="service-emoji">📁</span>
+                <div class="service-category">
+                  <h3 class="service-name">Long-Term Support & Maintenance</h3>
+                </div>
+              </div>
+              <ul class="service-items">
+                <li>Monthly support packages</li>
+                <li>Bug fixing & updates</li>
+                <li>Feature extensions</li>
+                <li>Technical guidance</li>
+              </ul>
+            </div>
+
+            <div class="service-card">
+              <div class="service-header">
+                <span class="service-emoji">📘</span>
+                <div class="service-category">
+                  <h3 class="service-name">Documentation & Training</h3>
+                </div>
+              </div>
+              <ul class="service-items">
+                <li>Video walkthroughs</li>
+                <li>Developer documentation</li>
+                <li>One-on-one training sessions</li>
+                <li>Clean, readable code</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Q&A Section -->
+      <section class="qna-section" aria-label="Frequently Asked Questions">
+        <div class="qna-container">
+          <!-- Left Side: FAQ -->
+          <div class="qna-left">
+            <!-- Question 1: How much does it cost? -->
+            <div class="qna-item">
+              <div class="qna-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
+                </svg>
+              </div>
+              <div class="qna-content">
+                <h3 class="qna-question">How much does it cost to hire you?</h3>
+                <div class="qna-divider"></div>
+                <p class="qna-answer">Every project is different. The cost depends on scope, complexity, and how much
+                  development time is required.
+                  For example, a small gameplay system or mechanic may range from $2,500–$3,500.
+                  Larger features, prototypes, or full game systems will be priced based on the time and resources
+                  needed.
+                  Once you tell me about your project, I'll send you a detailed quote.</p>
+              </div>
+            </div>
+
+            <!-- Question 2: And After? -->
+            <div class="qna-item">
+              <div class="qna-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" />
+                </svg>
+              </div>
+              <div class="qna-content">
+                <h3 class="qna-question">What happens after you finish the work?</h3>
+                <div class="qna-divider"></div>
+                <p class="qna-answer">You'll receive clean, documented code, along with instructions or walkthroughs
+                  explaining how to use or expand the systems I built.
+                  If needed, I can record video explanations or host a short training session so you fully understand
+                  how
+                  everything works.</p>
+              </div>
+            </div>
+
+            <!-- Question 3: Want Stress Free? -->
+            <div class="qna-item">
+              <div class="qna-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                </svg>
+              </div>
+              <div class="qna-content">
+                <h3 class="qna-question">Want a stress-free development experience?</h3>
+                <div class="qna-divider"></div>
+                <p class="qna-answer">If you prefer ongoing help, I offer monthly maintenance & support plans.
+                  This includes bug fixes, small feature updates, optimization, and technical support — so you can focus
+                  on creating your game while I handle the heavy lifting behind the scenes.</p>
+              </div>
+            </div>
           </div>
 
-          <div class="message me">
-            <div class="bubble">Alright, great!
-              I'll handle everything, first the design that I'll share with you. Once validated,
-              I'll develop your website and put it online!</div>
-            <div class="avatar-chat me-pic" aria-hidden="true"><img src="Headshot.png" alt="You"></div>
+          <!-- Right Side: Testimonial Carousel -->
+          <div class="testimonial-wrapper">
+            <h3 class="testimonial-title">Client Reviews</h3>
+            <div class="testimonial-carousel">
+              <div class="testimonial-content" id="testimonialContent">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text"></p>
+                <div class="testimonial-author">
+                  <div class="testimonial-avatar" id="testimonialAvatar"></div>
+                  <div class="testimonial-info">
+                    <p class="testimonial-name" id="testimonialName"></p>
+                    <p class="testimonial-role" id="testimonialRole"></p>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-controls">
+                <button class="carousel-btn" onclick="previousTestimonial()"
+                  aria-label="Previous testimonial">‹</button>
+                <button class="carousel-btn" onclick="nextTestimonial()" aria-label="Next testimonial">›</button>
+              </div>
+              <div class="carousel-dots" id="carouselDots"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Project Showcase Section -->
+      <section class="projects-section" id="projects" aria-label="Featured Projects">
+        <div class="projects-container">
+          <div class="projects-header">
+            <h2 class="projects-title">Featured Work</h2>
+            <p class="projects-subtitle">Features I've brought to life</p>
+            <p class="projects-disclaimer">
+              <strong>Note:</strong> Most of my client work is under NDA or remains confidential at the client's
+              request. The projects shown here are representative examples of the type of systems and features I
+              develop.
+            </p>
+          </div>
+          <div class="projects-grid">
+            <!-- Project 1 -->
+            <div class="project-card">
+              <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=800&h=600&fit=crop"
+                alt="Combat System Project" class="project-image">
+              <div class="project-content">
+                <div class="project-header">
+                  <span class="project-icon">⚔️</span>
+                  <h3 class="project-title">Dynamic Combat System</h3>
+                </div>
+                <p class="project-description">
+                  Built a fluid third-person combat system with combo attacks, parrying, and dodge mechanics. Includes
+                  custom animation blending and hit detection.
+                </p>
+                <div class="project-tags">
+                  <span class="project-tag">Unity</span>
+                  <span class="project-tag">C#</span>
+                  <span class="project-tag">Animation</span>
+                </div>
+                <div class="project-stats">
+                  <div class="project-stat">
+                    <span class="project-stat-icon">🎮</span>
+                    <span>Action RPG</span>
+                  </div>
+                  <div class="project-stat">
+                    <span class="project-stat-icon">⏱️</span>
+                    <span>4 weeks</span>
+                  </div>
+                  <div class="project-stat">
+                    <span class="project-stat-icon">💰</span>
+                    <span>$4,500</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card">
+              <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800&h=600&fit=crop"
+                alt="AI Behavior System" class="project-image">
+              <div class="project-content">
+                <div class="project-header">
+                  <span class="project-icon">🤖</span>
+                  <h3 class="project-title">Advanced AI System</h3>
+                </div>
+                <p class="project-description">
+                  Designed intelligent enemy AI with behavior trees, squad tactics, and dynamic difficulty adjustment.
+                  Features realistic pathfinding and cover system.
+                </p>
+                <div class="project-tags">
+                  <span class="project-tag">Unreal</span>
+                  <span class="project-tag">Blueprints</span>
+                  <span class="project-tag">AI</span>
+                </div>
+                <div class="project-stats">
+                  <div class="project-stat">
+                    <span class="project-stat-icon">🎮</span>
+                    <span>Tactical Shooter</span>
+                  </div>
+                  <div class="project-stat">
+                    <span class="project-stat-icon">⏱️</span>
+                    <span>6 weeks</span>
+                  </div>
+                  <div class="project-stat">
+                    <span class="project-stat-icon">💰</span>
+                    <span>$6,200</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card">
+              <img src="https://images.unsplash.com/photo-1614294148960-9aa740632a87?w=800&h=600&fit=crop"
+                alt="Mobile Game Optimization" class="project-image">
+              <div class="project-content">
+                <div class="project-header">
+                  <span class="project-icon">📱</span>
+                  <h3 class="project-title">Mobile Optimization</h3>
+                </div>
+                <p class="project-description">
+                  Optimized an existing mobile game to run smoothly on mid-range devices. Reduced draw calls by 60% and
+                  improved frame rate from 30fps to stable 60fps.
+                </p>
+                <div class="project-tags">
+                  <span class="project-tag">Unity</span>
+                  <span class="project-tag">Mobile</span>
+                  <span class="project-tag">Performance</span>
+                </div>
+                <div class="project-stats">
+                  <div class="project-stat">
+                    <span class="project-stat-icon">🎮</span>
+                    <span>Puzzle Game</span>
+                  </div>
+                  <div class="project-stat">
+                    <span class="project-stat-icon">⏱️</span>
+                    <span>3 weeks</span>
+                  </div>
+                  <div class="project-stat">
+                    <span class="project-stat-icon">💰</span>
+                    <span>$3,800</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="project-card">
+              <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&h=600&fit=crop"
+                alt="Editor Tools Development" class="project-image">
+              <div class="project-content">
+                <div class="project-header">
+                  <span class="project-icon">🛠️</span>
+                  <h3 class="project-title">Custom Editor Tools</h3>
+                </div>
+                <p class="project-description">
+                  Created custom Unity editor tools for level designers including automated prefab placement, terrain
+                  painting workflows, and validation systems.
+                </p>
+                <div class="project-tags">
+                  <span class="project-tag">Unity</span>
+                  <span class="project-tag">Editor</span>
+                  <span class="project-tag">Tools</span>
+                </div>
+                <div class="project-stats">
+                  <div class="project-stat">
+                    <span class="project-stat-icon">🎮</span>
+                    <span>Open World</span>
+                  </div>
+                  <div class="project-stat">
+                    <span class="project-stat-icon">⏱️</span>
+                    <span>5 weeks</span>
+                  </div>
+                  <div class="project-stat">
+                    <span class="project-stat-icon">💰</span>
+                    <span>$5,500</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Me Section -->
+      <section class="about-section" id="about" aria-label="About Me">
+        <div class="about-container">
+          <div class="about-left">
+            <h2 class="about-title">About Me</h2>
+            <p class="about-highlight">Turning ideas into playable experiences</p>
+            <div class="about-image-wrapper">
+              <img src="headshot.jpg" alt="Dominick Girard" class="about-image">
+            </div>
+          </div>
+          <div class="about-right">
+            <div class="about-bio">
+              <p>
+                Hi, I'm <strong>Dominick Girard</strong>! I graduated from Georgia Southern University with a Bachelor's
+                degree in Computer Science and earned a Cybersecurity diploma from Gwinnett Technical College. Over the
+                past year, I've been
+                working as a freelance game developer, creating gameplay systems, AI, tools, and prototypes across
+                multiple engines like <strong>Unity, Unreal, and Godot</strong>.
+              </p>
+              <p>
+                I enjoy turning ideas into playable experiences and helping other developers bring their visions to
+                life. When I'm not coding or building game systems, I spend time <strong>weightlifting and staying
+                  active</strong> — it helps me stay focused and energized for long dev sessions.
+              </p>
+              <p>
+                I'm always looking for exciting new projects to work on, whether it's building a unique gameplay
+                mechanic, polishing a prototype, or providing long-term technical support.
+              </p>
+            </div>
+            <div class="about-stats">
+              <div class="stat-card">
+                <div class="stat-icon">🎓</div>
+                <p class="stat-label">Education</p>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon">💻</div>
+                <p class="stat-label">Game Dev</p>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon">🏋️</div>
+                <p class="stat-label">Fitness</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -888,8 +2321,15 @@
           const el = els[i];
           const text = el.getAttribute('data-text') || '';
           await typeHTML(el, text);
-          await sleep(pauseBetweenLines);
+          // Only pause between lines, not after the last one
+          if (i < els.length - 1) {
+            await sleep(pauseBetweenLines);
+          }
         }
+        // Show scroll button after typing finishes
+        await sleep(1);
+        const scrollBtn = document.getElementById('scrollButton');
+        if (scrollBtn) scrollBtn.classList.add('visible');
         // Optionally loop: uncomment to repeat
         // setTimeout(()=>{ els.forEach(e=>e.textContent=''); run(); }, 1200);
       }
@@ -900,6 +2340,122 @@
     })();
   </script>
   <script>
+    // Scroll to top of page
+    function scrollToTop(event) {
+      event.preventDefault();
+      const main = document.querySelector('main');
+      if (main) {
+        main.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Scroll to services section
+    function scrollToServices(event) {
+      if (event) event.preventDefault();
+      const servicesSection = document.getElementById('services');
+      if (servicesSection) {
+        servicesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    // Scroll to about section
+    function scrollToAbout(event) {
+      if (event) event.preventDefault();
+      const aboutSection = document.getElementById('about');
+      if (aboutSection) {
+        aboutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    // Testimonial Carousel
+    const testimonials = [
+      {
+        name: "Sarah",
+        role: "Indie Game Developer",
+        text: "The combat system came out really well. Clean code, good documentation, and some helpful editor tools that made implementation easier. Would work with again.",
+        avatar: "S"
+      },
+      {
+        name: "Marcus",
+        role: "Studio Lead, Pixel Forge Games",
+        text: "Hired for enemy AI work in Unity. Got exactly what we needed - smooth pathfinding and efficient behavior trees. Professional throughout the process.",
+        avatar: "M"
+      },
+      {
+        name: "Alex",
+        role: "Solo Developer",
+        text: "Needed optimization help for mobile and got solid results. Frame time cut in half, which was huge for my project. Knows his stuff.",
+        avatar: "A"
+      },
+      {
+        name: "Emily",
+        role: "Game Designer",
+        text: "Took my rough prototype and made it into something I could actually pitch. Good communication and understood what I was going for.",
+        avatar: "E"
+      },
+      {
+        name: "David",
+        role: "Technical Director",
+        text: "We've used him on a few projects now. Works well across different engines and delivers quality code. Reliable choice.",
+        avatar: "D"
+      }
+    ];
+
+    let currentTestimonial = 0;
+
+    function updateTestimonial() {
+      const testimonial = testimonials[currentTestimonial];
+      document.querySelector('.testimonial-text').textContent = testimonial.text;
+      document.getElementById('testimonialName').textContent = testimonial.name;
+      document.getElementById('testimonialRole').textContent = testimonial.role;
+      document.getElementById('testimonialAvatar').textContent = testimonial.avatar;
+
+      // Update dots
+      const dots = document.querySelectorAll('.carousel-dot');
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentTestimonial);
+      });
+    }
+
+    function nextTestimonial() {
+      currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+      updateTestimonial();
+    }
+
+    function previousTestimonial() {
+      currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+      updateTestimonial();
+    }
+
+    function initTestimonials() {
+      // Create dots
+      const dotsContainer = document.getElementById('carouselDots');
+      testimonials.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.className = 'carousel-dot';
+        if (index === 0) dot.classList.add('active');
+        dot.onclick = () => {
+          currentTestimonial = index;
+          updateTestimonial();
+        };
+        dotsContainer.appendChild(dot);
+      });
+
+      // Set initial testimonial
+      updateTestimonial();
+
+      // Auto-rotate every 10 seconds
+      setInterval(nextTestimonial, 10000);
+    }
+
+    // Initialize testimonials when page loads
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initTestimonials);
+    } else {
+      initTestimonials();
+    }
+
     // Contact form controls
     function openContactForm() {
       document.getElementById('contactOverlay').classList.add('active');

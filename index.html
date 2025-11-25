@@ -4,6 +4,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate icon" type="image/x-icon" href="favicon.ico">
   <title>Portfolio — Your Name</title>
   <style>
     :root {
@@ -268,7 +270,7 @@
       width: 100%;
       display: flex;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: center;
       gap: 10px;
     }
 
@@ -519,6 +521,11 @@
       .section-separator {
         margin-top: 35vh;
       }
+
+      .hire-me {
+        font-size: 1em;
+        padding: 12px 18px;
+      }
     }
 
     @media (max-width:720px) {
@@ -598,15 +605,25 @@
       }
 
       .hire-me {
-        font-size: 0.85em;
-        padding: 10px 14px;
-        top: 10px;
-        right: 10px;
+        font-size: 0.9em;
+        padding: 12px 24px;
+        top: auto;
+        bottom: 20px;
+        right: 50%;
+        transform: translateX(50%);
+        flex-direction: row;
+        gap: 8px;
+        border-radius: 10px;
+        box-shadow: 0 -4px 20px rgba(0, 15, 153, 0.3);
+      }
+
+      .hire-me:hover {
+        transform: translateX(50%) translateY(-2px);
       }
 
       .hire-me-arrow {
-        width: 24px;
-        height: 24px;
+        width: 22px;
+        height: 22px;
       }
     }
 
@@ -1837,13 +1854,19 @@
       }
 
       .hire-me {
-        font-size: 0.75em;
-        padding: 8px 12px;
-        gap: 3px;
+        font-size: 0.85em;
+        padding: 10px 20px;
+        gap: 6px;
+        bottom: 16px;
+      }
+
+      .hire-me-arrow {
+        width: 20px;
+        height: 20px;
       }
 
       .hire-me span {
-        font-size: 0.85em;
+        font-size: 1em;
       }
 
       .section-separator {
@@ -1925,6 +1948,151 @@
       }
     }
 
+    /* Footer */
+    .site-footer {
+      width: 100%;
+      background: linear-gradient(180deg, rgba(0, 15, 153, 0.02) 0%, rgba(0, 15, 153, 0.08) 100%);
+      border-top: 1px solid rgba(0, 15, 153, 0.1);
+      padding: 60px 32px 80px 32px;
+      margin-top: 80px;
+    }
+
+    .footer-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .footer-about h3 {
+      font-size: 1.5em;
+      color: var(--accent-a);
+      margin: 0 0 16px 0;
+      font-weight: 700;
+    }
+
+    .footer-about p {
+      color: rgba(0, 0, 0, 0.7);
+      line-height: 1.6;
+      margin: 0;
+      font-size: 0.95em;
+    }
+
+    .footer-section h4 {
+      font-size: 1.1em;
+      color: var(--accent-a);
+      margin: 0 0 20px 0;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-links a {
+      color: rgba(0, 0, 0, 0.7);
+      text-decoration: none;
+      font-size: 0.95em;
+      transition: color 0.2s ease, transform 0.2s ease;
+      display: inline-block;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent-a);
+      transform: translateX(4px);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-social a {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: rgba(0, 15, 153, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-a);
+      text-decoration: none;
+      font-size: 1.2em;
+      transition: all 0.3s ease;
+    }
+
+    .footer-social a:hover {
+      background: var(--accent-a);
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(0, 15, 153, 0.3);
+    }
+
+    .footer-bottom {
+      margin-top: 60px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(0, 15, 153, 0.1);
+      text-align: center;
+      color: rgba(0, 0, 0, 0.6);
+      font-size: 0.9em;
+    }
+
+    .footer-bottom p {
+      margin: 0;
+    }
+
+    .footer-bottom a {
+      color: var(--accent-a);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .footer-bottom a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 1024px) {
+      .footer-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+
+      .footer-about {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .site-footer {
+        padding: 40px 16px 100px 16px;
+        margin-top: 60px;
+      }
+
+      .footer-container {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .footer-about {
+        grid-column: 1;
+      }
+
+      .footer-bottom {
+        margin-top: 40px;
+        padding-top: 20px;
+      }
+    }
+
     /* Landscape orientation adjustments */
     @media (max-height: 600px) and (orientation: landscape) {
       .sidebar {
@@ -2001,7 +2169,8 @@
 
     <!-- Footer area (bottom of sidebar): update href to your GitHub profile -->
     <div class="sidebar-footer">
-      <a class="github-link" href="#" target="_blank" rel="noopener" aria-label="GitHub">
+      <a class="github-link" href="https://github.com/DominickGirard" target="_blank" rel="noopener"
+        aria-label="GitHub">
         <!-- GitHub mark (simple SVG) -->
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <path
@@ -2528,6 +2697,41 @@
           <button type="submit" class="submit-btn">Send Message</button>
         </form>
       </div>
+
+      <!-- Footer -->
+      <footer class="site-footer">
+        <div class="footer-container">
+          <div class="footer-about">
+            <h3>Dominick Girard</h3>
+            <p>Freelance game developer specializing in gameplay systems, AI, tools, and prototypes across Unity,
+              Unreal, and Godot. Turning ideas into playable experiences.</p>
+          </div>
+          <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul class="footer-links">
+              <li><a href="#home" onclick="scrollToTop(event)">Home</a></li>
+              <li><a href="#services" onclick="scrollToServices(event)">What I Offer</a></li>
+              <li><a href="#about" onclick="scrollToAbout(event)">About Me</a></li>
+              <li><a href="#" onclick="openContactForm(); return false;">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Connect</h4>
+            <div class="footer-social">
+              <a href="https://github.com/DominickGirard" target="_blank" rel="noopener" aria-label="GitHub"
+                title="GitHub">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                  <path
+                    d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.35-1.3-1.71-1.3-1.71-1.06-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.27 3.39.97.11-.76.41-1.27.74-1.56-2.55-.29-5.24-1.28-5.24-5.71 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18.92-.26 1.9-.39 2.88-.39.98 0 1.96.13 2.88.39 2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.77.12 3.06.74.81 1.19 1.84 1.19 3.1 0 4.45-2.7 5.41-5.28 5.69.42.36.79 1.08.79 2.18 0 1.57-.01 2.84-.01 3.23 0 .31.21.68.8.56C20.71 21.39 24 17.08 24 12c0-6.35-5.15-11.5-12-11.5z" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 Dominick Girard. All rights reserved.</p>
+        </div>
+      </footer>
     </section>
   </main>
   <script>
